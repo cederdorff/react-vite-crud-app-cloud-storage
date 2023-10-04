@@ -39,7 +39,7 @@ export default function PostForm({ savePost, post }) {
         }
     }
     async function uploadImage() {
-        //url to new image. "race-crud-rest" should be replaced with own firebase project id
+        //url to new image. "race-rest" must be replaced with own firebase project id
         const url = `https://firebasestorage.googleapis.com/v0/b/race-rest.appspot.com/o/${imageFile.name}`;
         // POST request to upload image
         const response = await fetch(url, {
