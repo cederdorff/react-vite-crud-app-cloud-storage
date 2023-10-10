@@ -9,7 +9,7 @@ export default function PostForm({ savePost, post }) {
     const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
-        if (post) {
+        if (post.title && post.body && post.image) {
             // if post, set the states with values from the post object.
             // The post object is a prop, passed from UpdatePage
             setTitle(post.title);
@@ -78,16 +78,36 @@ export default function PostForm({ savePost, post }) {
         <form onSubmit={handleSubmit}>
             <label>
                 Title
-                <input type="text" value={title} placeholder="Type a title" onChange={e => setTitle(e.target.value)} />
+                <input
+                    type="text"
+                    value={title}
+                    placeholder="Type a title"
+                    onChange={e => setTitle(e.target.value)}
+                />
             </label>
             <label>
                 Body
-                <input type="text" value={body} placeholder="Type a body text" onChange={e => setBody(e.target.value)} />
+                <input
+                    type="text"
+                    value={body}
+                    placeholder="Type a body text"
+                    onChange={e => setBody(e.target.value)}
+                />
             </label>
             <label>
                 Image
-                <input type="file" className="file-input" accept="image/*" onChange={handleImageChange} />
-                <img className="image-preview" src={image} alt="Choose" onError={event => (event.target.src = imgPlaceholder)} />
+                <input
+                    type="file"
+                    className="file-input"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                />
+                <img
+                    className="image-preview"
+                    src={image}
+                    alt="Choose"
+                    onError={event => (event.target.src = imgPlaceholder)}
+                />
             </label>
             <p className="text-error">{errorMessage}</p>
             <button type="submit">Save</button>
