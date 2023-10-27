@@ -7,7 +7,7 @@ export default function UserAvatar({ uid }) {
         name: "User's Name",
         title: "User's Title"
     });
-    const url = `https://race-rest-default-rtdb.firebaseio.com/users/${uid}.json`;
+    const url = `${import.meta.env.VITE_FIREBASE_DB_URL}/users/${uid}.json`;
 
     useEffect(() => {
         async function getUser() {

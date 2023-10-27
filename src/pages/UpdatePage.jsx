@@ -6,7 +6,7 @@ export default function UpdatePage() {
     const [post, setPost] = useState();
     const params = useParams();
     const navigate = useNavigate();
-    const url = `https://race-rest-default-rtdb.firebaseio.com/posts/${params.postId}.json`;
+    const url = `${import.meta.env.VITE_FIREBASE_DB_URL}/posts/${params.postId}.json`;
 
     useEffect(() => {
         async function getPost() {

@@ -9,7 +9,7 @@ export default function PostForm({ savePost, post }) {
     const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
-        if (post.title && post.body && post.image) {
+        if (post?.title && post?.body && post?.image) {
             // if post, set the states with values from the post object.
             // The post object is a prop, passed from UpdatePage
             setTitle(post.title);
@@ -39,8 +39,9 @@ export default function PostForm({ savePost, post }) {
         }
     }
     async function uploadImage() {
-        //url to new image. "race-rest" must be replaced with own firebase project id
-        const url = `https://firebasestorage.googleapis.com/v0/b/race-rest.appspot.com/o/${imageFile.name}`;
+        const url = `https://firebasestorage.googleapis.com/v0/b/${
+            import.meta.env.VITE_FIREBASE_PROJECT_ID
+        }.appspot.com/o/${imageFile.name}`;
         // POST request to upload image
         const response = await fetch(url, {
             method: "POST",
@@ -78,12 +79,7 @@ export default function PostForm({ savePost, post }) {
         <form onSubmit={handleSubmit}>
             <label>
                 Title
-                <input
-                    type="text"
-                    value={title}
-                    placeholder="Type a title"
-                    onChange={e => setTitle(e.target.value)}
-                />
+                <input type="text" value={title} placeholder="Type a title" onChange={e => setTitle(e.target.value)} />
             </label>
             <label>
                 Body
@@ -96,12 +92,7 @@ export default function PostForm({ savePost, post }) {
             </label>
             <label>
                 Image
-                <input
-                    type="file"
-                    className="file-input"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                />
+                <input type="file" className="file-input" accept="image/*" onChange={handleImageChange} />
                 <img
                     className="image-preview"
                     src={image}

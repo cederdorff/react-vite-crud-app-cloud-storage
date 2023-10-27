@@ -7,7 +7,7 @@ export default function CreatePage() {
     async function createPost(newPost) {
         newPost.uid = "fTs84KRoYw5pRZEWCq2Z"; // default user id added
 
-        const url = "https://race-rest-default-rtdb.firebaseio.com/posts.json";
+        const url = `${import.meta.env.VITE_FIREBASE_DB_URL}/posts.json`;
         const response = await fetch(url, {
             method: "POST",
             body: JSON.stringify(newPost)
